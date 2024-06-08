@@ -17,6 +17,8 @@ const ShoppingListItem: React.FC<Props> = ({ item, onRemove, onEdit }) => {
     const [disabled, setDisabled] = React.useState(true)
     const [checked, setChecked] = React.useState(false)
 
+    let currentItem: Item
+
     return (
         <li
             className="flex gap-2 w-full overflow-hidden px-4"
@@ -66,7 +68,11 @@ const ShoppingListItem: React.FC<Props> = ({ item, onRemove, onEdit }) => {
                     disabled ? (
                         <button
                             onClick={() => {
-                                // TODO: save current value to variable
+                                currentItem = {
+                                    id: item.id,
+                                    name: name,
+                                    count: parseInt(count),
+                                }
 
                                 setDisabled(!disabled)
                             }}
@@ -76,9 +82,11 @@ const ShoppingListItem: React.FC<Props> = ({ item, onRemove, onEdit }) => {
                     ) : (
                         <button
                             onClick={() => {
-                                // TODO: submit change to database, check with current value if changed
-                                // TODO: submit change to database, check with current value if changed
+                                if (name !== currentItem.name || parseInt(count) !== currentItem.count) {
+                                    // TODO: submit change to database
+                                }
 
+                                onEdit(item)
                                 setDisabled(!disabled)
                             }}
                             className="rounded-xl p-3 text-lg aspect-square h-full border-2 border-green-600 text-green-600">
@@ -89,7 +97,7 @@ const ShoppingListItem: React.FC<Props> = ({ item, onRemove, onEdit }) => {
             }
             <button
                 onClick={() => {
-                    // TODO: delete
+                    // TODO: delete from database
 
                     onRemove(item.id)
                 }}
