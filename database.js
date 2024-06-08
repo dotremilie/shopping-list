@@ -56,7 +56,7 @@ function fetchShoppingList() {
                     return [4 /*yield*/, client.db(databaseName).collection(collectionName)];
                 case 1:
                     collection = _a.sent();
-                    query = { "item": { $ne: null } };
+                    query = { "name": { $ne: null } };
                     return [4 /*yield*/, collection.find(query).toArray()];
                 case 2:
                     allDocuments = _a.sent();
@@ -166,7 +166,7 @@ function run() {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 4, 5, 7]);
+                    _a.trys.push([0, 5, 6, 8]);
                     // Connect the client to the server
                     return [4 /*yield*/, client.connect()];
                 case 1:
@@ -184,27 +184,28 @@ function run() {
                     //await removeItem(itemId).catch(console.dir);
                     itemId = "66646358d0c94871212728a6";
                     updatedData = {
-                        "shopping_list.name": "Cheese",
-                        "shopping_list.count": 2
+                        "name": "Cheese",
+                        "count": 2
                     };
-                    //await editItem(itemId, updatedData);
-                    return [4 /*yield*/, fetchShoppingList().catch(console.dir)];
+                    return [4 /*yield*/, editItem(itemId, updatedData)];
                 case 3:
-                    //await editItem(itemId, updatedData);
                     _a.sent();
-                    return [3 /*break*/, 7];
+                    return [4 /*yield*/, fetchShoppingList().catch(console.dir)];
                 case 4:
+                    _a.sent();
+                    return [3 /*break*/, 8];
+                case 5:
                     err_5 = _a.sent();
                     console.error(err_5);
-                    return [3 /*break*/, 7];
-                case 5: 
+                    return [3 /*break*/, 8];
+                case 6: 
                 // Ensures that the client will close when you finish/error
                 return [4 /*yield*/, client.close()];
-                case 6:
+                case 7:
                     // Ensures that the client will close when you finish/error
                     _a.sent();
                     return [7 /*endfinally*/];
-                case 7: return [2 /*return*/];
+                case 8: return [2 /*return*/];
             }
         });
     });

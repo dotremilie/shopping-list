@@ -18,7 +18,7 @@ async function fetchShoppingList() {
     try {
         const collection = await client.db(databaseName).collection(collectionName);
         
-        const query = { "item": { $ne: null } };
+        const query = { "name": { $ne: null } };
         const allDocuments = await collection.find(query).toArray();
         console.log(`All documents in the ${collectionName}:`, allDocuments);
     
@@ -99,8 +99,8 @@ async function run() {
 
         itemId = "66646358d0c94871212728a6";
         const updatedData = {
-            "shopping_list.name": "Cheese",
-            "shopping_list.count": 2
+            "name": "Cheese",
+            "count": 2
         };
         //await editItem(itemId, updatedData);
 
