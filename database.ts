@@ -63,7 +63,7 @@ async function removeItem(itemId: string) {
     }
 }
 
-async function editItem(itemId: string, updatedData: any) {
+async function updateItem(itemId: string, updatedData: any) {
     try {
         const collection = await client.db(databaseName).collection(collectionName);
         
@@ -102,7 +102,7 @@ async function run() {
             "name": "Cheese",
             "count": 2
         };
-        //await editItem(itemId, updatedData);
+        //await updateItem(itemId, updatedData);
 
         await fetchShoppingList().catch(console.dir);
 
