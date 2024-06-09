@@ -131,7 +131,7 @@ function removeItem(itemId) {
         });
     });
 }
-function editItem(itemId, updatedData) {
+function updateItem(itemId, updatedData) {
     return __awaiter(this, void 0, void 0, function () {
         var collection, updateResult, err_4;
         return __generator(this, function (_a) {
@@ -166,7 +166,7 @@ function run() {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 5, 6, 8]);
+                    _a.trys.push([0, 4, 5, 7]);
                     // Connect the client to the server
                     return [4 /*yield*/, client.connect()];
                 case 1:
@@ -187,25 +187,24 @@ function run() {
                         "name": "Cheese",
                         "count": 2
                     };
-                    return [4 /*yield*/, editItem(itemId, updatedData)];
-                case 3:
-                    _a.sent();
+                    //await updateItem(itemId, updatedData);
                     return [4 /*yield*/, fetchShoppingList().catch(console.dir)];
-                case 4:
+                case 3:
+                    //await updateItem(itemId, updatedData);
                     _a.sent();
-                    return [3 /*break*/, 8];
-                case 5:
+                    return [3 /*break*/, 7];
+                case 4:
                     err_5 = _a.sent();
                     console.error(err_5);
-                    return [3 /*break*/, 8];
-                case 6: 
+                    return [3 /*break*/, 7];
+                case 5: 
                 // Ensures that the client will close when you finish/error
                 return [4 /*yield*/, client.close()];
-                case 7:
+                case 6:
                     // Ensures that the client will close when you finish/error
                     _a.sent();
                     return [7 /*endfinally*/];
-                case 8: return [2 /*return*/];
+                case 7: return [2 /*return*/];
             }
         });
     });
