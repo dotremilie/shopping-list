@@ -1,5 +1,6 @@
-import Item from '@/models/Item'
-
-export default interface CheckableItem extends Item {
+export default interface CheckableItem {
+    id: string;
+    name: string;
+    count: number;
     isChecked: boolean;
 }
