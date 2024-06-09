@@ -12,9 +12,9 @@ export async function addItem(item: Item){
     
     try {
         await connectDB();
-    
         const savedItem = await newItem.save();
         console.log('Item saved:', savedItem);
+        return savedItem;
     } catch (err) {
         console.error('Error saving item:', err);
     }
