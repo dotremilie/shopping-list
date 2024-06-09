@@ -4,14 +4,19 @@ import ItemModel from '@/models/ItemModel'
 import connectDB from '@/config/database'
 import Item from '@/models/Item'
 
-export async function updateItem(item: Item, updatedData: any) {
+export async function updateItem(item: Item) {
     try {
         await connectDB()
+
         const updatedItem = await ItemModel.findByIdAndUpdate(
             item.id,
-            updatedData,
+            {
+                name: item.name,
+                count: item.count,
+            },
             { new: true, runValidators: true },
         )
+
         if (updatedItem) {
             console.log('Item updated:', updatedItem)
         } else {
