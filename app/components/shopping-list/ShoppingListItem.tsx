@@ -32,9 +32,7 @@ const ShoppingListItem: React.FC<Props> = ({ item, onRemove, onEdit, onCheck }) 
     }
 
     return (
-        <li
-            className="flex gap-2 w-full overflow-hidden px-4"
-        >
+        <li className="flex gap-2 w-full overflow-hidden px-4 z-0">
             <div className="relative flex-1 min-w-12">
                 <input
                     type="text"
@@ -47,7 +45,6 @@ const ShoppingListItem: React.FC<Props> = ({ item, onRemove, onEdit, onCheck }) 
                             'text-stone-500 line-through': checked,
                         },
                     )}
-
                     disabled={disabled}
                 />
                 {
@@ -90,12 +87,7 @@ const ShoppingListItem: React.FC<Props> = ({ item, onRemove, onEdit, onCheck }) 
                                     setDisabled(!disabled)
                                 }
                             }
-                            className="transition flex items-center justify-center rounded-xl p-3 text-lg aspect-square h-full border-2
-                            dark:border-blue-600 dark:text-blue-600
-                            hover:dark:bg-blue-600 hover:dark:text-white
-                            active:bg-blue-500 active:border-0 active:text-black active:dark:text-white
-                            border-blue-400 text-blue-400
-                            hover:bg-blue-400 hover:text-black"
+                            className="transition flex items-center justify-center rounded-xl p-3 text-lg aspect-square h-full border-2 dark:border-blue-600 dark:text-blue-600 hover:dark:bg-blue-600 hover:dark:text-white active:bg-blue-500 active:border-0 active:text-black active:dark:text-white border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-black"
                         >
                             <FiEdit2 />
                         </button>
@@ -118,13 +110,7 @@ const ShoppingListItem: React.FC<Props> = ({ item, onRemove, onEdit, onCheck }) 
                                     setDisabled(!disabled)
                                 }
                             }
-                            className="transition flex items-center justify-center rounded-xl p-3 text-lg aspect-square h-full border-2
-                            dark:border-green-600 dark:text-green-600
-                            hover:dark:bg-green-600 hover:dark:text-white
-                            active:bg-green-500 active:border-0 active:text-black active:dark:text-white
-                            border-green-400 text-green-400
-                            hover:bg-green-400 hover:text-black
-                            "
+                            className="transition flex items-center justify-center rounded-xl p-3 text-lg aspect-square h-full border-2 dark:border-green-600 dark:text-green-600 hover:dark:bg-green-600 hover:dark:text-white active:bg-green-500 active:border-0 active:text-black active:dark:text-white border-green-400 text-green-400 hover:bg-green-400 hover:text-black"
                         >
                             <FiCheck />
                         </button>
@@ -137,12 +123,7 @@ const ShoppingListItem: React.FC<Props> = ({ item, onRemove, onEdit, onCheck }) 
                         onRemove(item)
                     }
                 }
-                className="transition flex items-center justify-center rounded-xl p-3 text-lg aspect-square h-full border-2
-                            dark:border-red-600 dark:text-red-600
-                            hover:dark:bg-red-600 hover:dark:text-white
-                            active:bg-red-500 active:border-0 active:text-black active:dark:text-white
-                            border-red-400 text-red-400
-                            hover:bg-red-400 hover:text-black"
+                className="transition flex items-center justify-center rounded-xl p-3 text-lg aspect-square h-full border-2 dark:border-red-600 dark:text-red-600 hover:dark:bg-red-600 hover:dark:text-white active:bg-red-500 active:border-0 active:text-black active:dark:text-white border-red-400 text-red-400 hover:bg-red-400 hover:text-black"
             >
                 <FiTrash2 />
             </button>

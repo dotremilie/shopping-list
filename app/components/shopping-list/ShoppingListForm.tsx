@@ -3,6 +3,7 @@
 import { FiPlus } from 'react-icons/fi'
 import React from 'react'
 import CheckableItem from '@/models/CheckableItem'
+import Item from '@/models/Item'
 
 interface Props {
     onAdd: (item: CheckableItem) => void
@@ -25,24 +26,45 @@ const ShoppingListForm: React.FC<Props> = ({ onAdd }) => {
         }
     }
 
-    const handleSubmit = () => {
-        onAdd(
-            {
-                id: '',
-                name: name,
-                count: count ? parseInt(count) : 1,
-                isChecked: false,
-            },
-        )
+    const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault()
 
-        setName('')
-        setCount('')
+        try {
+            const response = await fetch('api/items', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name,
+                    count: count ? parseInt(count) : 1,
+                }),
+            })
+
+            if (response.ok) {
+                const item = await response.json()
+
+                onAdd(
+                    {
+                        id: item._id,
+                        name: name,
+                        count: count ? parseInt(count) : 1,
+                        isChecked: false,
+                    },
+                )
+
+                setName('')
+                setCount('')
+            }
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     return (
-        <form
+        <div
             id="shopping-list-form"
-            className="flex flex-col gap-4 w-full p-4 dark:bg-stone-900 bg-stone-200"
+            className="sticky top-0 z-20 flex flex-col gap-4 w-full p-4 dark:bg-stone-900 bg-stone-200"
         >
             <input
                 type="text"
@@ -52,7 +74,6 @@ const ShoppingListForm: React.FC<Props> = ({ onAdd }) => {
                 value={name}
                 onChange={handleChange}
                 className="bg-transparent border-b-[1px] border-stone-500 p-2 w-full dark:placeholder:text-stone-400 placeholder:text-stone-500 outline-none ring-0 focus:dark:border-white focus:border-black"
-                required
             />
 
             <input
@@ -63,24 +84,16 @@ const ShoppingListForm: React.FC<Props> = ({ onAdd }) => {
                 value={count}
                 onChange={handleChange}
                 className="bg-transparent border-b-[1px] border-stone-500 p-2 w-full dark:placeholder:text-stone-400 placeholder:text-stone-500 outline-none ring-0 focus:dark:border-white focus:border-black"
-                required
             />
 
             <button
-                type="submit"
-                className="transition flex items-center justify-center gap-2 rounded-xl p-3 text-lg h-full
-                            dark:bg-green-700
-                            hover:dark:bg-green-600 hover:dark:text-white
-                            active:dark:bg-green-500 text-black dark:text-white
-                            bg-green-400
-                            hover:bg-green-500
-                            active:bg-green-600"
-                onSubmit={handleSubmit}
+                className="transition flex items-center justify-center gap-2 rounded-xl p-3 text-lg h-full dark:bg-green-700 hover:dark:bg-green-600 hover:dark:text-white active:dark:bg-green-500 text-black dark:text-white bg-green-400 hover:bg-green-500 active:bg-green-600"
+                onClick={handleClick}
             >
                 Add to List
                 <FiPlus />
             </button>
-        </form>
+        </div>
     )
 }
 
