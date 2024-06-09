@@ -4,11 +4,10 @@ import React from 'react'
 import { FiCheck, FiEdit2, FiTrash2 } from 'react-icons/fi'
 import { clsx } from 'clsx'
 import CheckableItem from '@/models/CheckableItem'
-import Item from '@/models/Item'
 
 interface Props {
     item: CheckableItem,
-    onRemove: (item: Item) => void,
+    onRemove: (item: CheckableItem) => void,
     onEdit: (item: CheckableItem) => void,
     onCheck: (item: CheckableItem) => void,
 }
