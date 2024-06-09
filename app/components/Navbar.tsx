@@ -10,7 +10,7 @@ const Navbar = () => {
     const pathname = usePathname()
 
     return (
-        <div className="text-2xl absolute flex items-center justify-around bottom-0 left-0 w-full dark:bg-stone-900 bg-stone-200">
+        <div className="text-2xl fixed flex items-center justify-around bottom-0 left-0 w-full dark:bg-stone-900 bg-stone-200">
             <Link
                 href="/"
                 className={clsx(
